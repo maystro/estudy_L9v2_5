@@ -1,0 +1,10 @@
+<x-data-table
+    :config="$data"
+    createFormModal="{{$this->createFormModal}}"
+    editFormModal="{{$this->editFormModal}}"
+    :selected-items="$selectedItems"
+    :pagesCount="$pagesCount"
+    :paginate="$paginate"
+    :navMenu="$navMenu"
+    :filter-info="$filter_info">
+</x-data-table>
