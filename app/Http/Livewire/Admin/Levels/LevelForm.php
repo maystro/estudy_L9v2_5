@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Levels;
 
 use App\Models\Level;
+use Illuminate\Validation\Rule;
 use Livewire\Component;
 
 class LevelForm extends Component
@@ -46,7 +47,7 @@ class LevelForm extends Component
             $this->updatelevel($level->id);
     }
 
-    private function validateInputs()
+    private function validateInputs(): void
     {
         $this->validate([
             'frm_level_title'=>[
