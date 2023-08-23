@@ -3,6 +3,9 @@
 namespace App\Http\Livewire\Admin\Levels;
 
 use App\Models\Level;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
 
@@ -21,11 +24,11 @@ class LevelForm extends Component
         'editRecord'=>'editRecord_eventHandler'
     ];
 
-    public function render()
+    public function render(): Factory|View|Application
     {
         return view('livewire.admin.levels.level-form');
     }
-    public function editRecord_eventHandler($id)
+    public function editRecord_eventHandler($id): void
     {
         $level = Level::query()->find($id)->first();
         if($level)
@@ -37,14 +40,14 @@ class LevelForm extends Component
             $this->form_title='تحديث مستوى : '.$level->title;
         }
     }
-    public function save()
+    public function save(): void
     {
         $level = level::query()->find($this->frm_level_id);
 
         if (!$level)
-            $this->createlevel();
+            $this->create_level();
         else
-            $this->updatelevel($level->id);
+            $this->update_level($level->id);
     }
 
     private function validateInputs(): void
@@ -67,7 +70,7 @@ class LevelForm extends Component
 
     }
 
-    private function createlevel()
+    private function create_level(): void
     {
 //        $this->frm_level_title = InputRules::translateCharacters($this->frm_level_title);
         $this->validateInputs();
@@ -82,7 +85,7 @@ class LevelForm extends Component
         $this->emitTo('admin.levels.index','refresh');
     }
 
-    private function updatelevel($id)
+    private function update_level($id): void
     {
         $level = level::query()->find($id);
 
@@ -95,7 +98,7 @@ class LevelForm extends Component
         $this->reset();
     }
 
-    public function close()
+    public function close(): void
     {
         $this->reset();
         $this->dispatchBrowserEvent('hideModal',['target'=>$this->form_modal]);
