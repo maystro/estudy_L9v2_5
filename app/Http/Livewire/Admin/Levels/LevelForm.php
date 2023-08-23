@@ -12,7 +12,7 @@ use Livewire\Component;
 class LevelForm extends Component
 {
     public $frm_level_id;
-    public $frm_level_title;
+    public string $frm_level_title;
     public $form_title='مستوى جديد';
     public $form_mode='create';
     public $auto_index=0;
