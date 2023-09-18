@@ -53,7 +53,7 @@
 
                             <div class="mb-3">
                                 @php
-                                $levels = \App\Models\Level::query()->where('is_public','=',true)
+                                $levels = \App\Models\Level::query()->where('is_public','=',1)
                                 @endphp
                                 <label for="level" class="form-label">اختر المستوى</label>
                                 <select id="level"  class="form-control" name="level">
