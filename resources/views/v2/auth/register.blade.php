@@ -52,9 +52,12 @@
                             </div>
 
                             <div class="mb-3">
+                                @php
+                                $levels = \App\Models\Level::query()->where('is_public','=',true)
+                                @endphp
                                 <label for="level" class="form-label">اختر المستوى</label>
                                 <select id="level"  class="form-control" name="level">
-                                    @foreach(\App\Models\Level::all() as $level)
+                                    @foreach($levels as $level)
                                         <option value="{{$level->id}}">{{$level->title}}</option>
                                     @endforeach
                                 </select>
